@@ -4,6 +4,12 @@
 Mensajes::Mensajes() {
 }
 
+Mensajes::Mensajes(int id, DtFecha fecha, DtTimeStamp hora){
+    this->id=id;
+    this->fecha_envio=fecha;
+    this->hora_envio=hora;
+}
+
 Mensajes::Mensajes(const Mensajes& orig) {
 }
 
