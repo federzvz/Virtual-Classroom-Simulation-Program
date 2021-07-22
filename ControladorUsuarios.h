@@ -2,13 +2,14 @@
 #define CONTROLADORUSUARIOS_H
 
 using namespace std;
+#include "ColeccionesG/ICollection.h"
 #include "string"
 
 class ControladorUsuarios{
 private:
-    iCollection *usuarios;
+    ICollection *usuarios;
 public:
-    ControladorUsuarios (iCollection);
+    ControladorUsuarios (ICollection*);
     void login(string usuario, string passwd);
     void listarDocentes();
     void listarEstudiantes();

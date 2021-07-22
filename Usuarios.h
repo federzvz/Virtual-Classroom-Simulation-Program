@@ -2,8 +2,9 @@
 #define USUARIOS_H
 
 using namespace std;
+#include "ColeccionesG/ICollection.h"
+#include "ColeccionesG/IDictionary.h"
 #include "string"
-
 
 class Usuarios {
 private:
@@ -11,22 +12,22 @@ private:
     string eMail;
     string URL_Imagen;
     string contraseña;
-    iDictionary *listaAsignatura;
-    iCollection *listaClases;
+    ICollection *listaAsignatura;
+    ICollection *listaClases;
 public:
-    Usuarios (string, string, string, string, iDictionary, iCollection);
+    Usuarios (string, string, string, string, ICollection*, ICollection*);
     void setNombre(string);
     void seteMail(string);
     void setImagen(string);
     void setContra(string);
+    void setListaAsig(ICollection*);
+    void setListaClases(ICollection*);
     string getNombre();
     string geteMail();
     string getImagen();
     string getPasswd();
-    void setListaAsig();
-    iDictionary getListaAsig();
-    void setListaClases();
-    iCollection getListaClases();
+    ICollection *getListaAsig();
+    ICollection *getListaClases();
 };
 
 #endif /* USUARIOS_H */

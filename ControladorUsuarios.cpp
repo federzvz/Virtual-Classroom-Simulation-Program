@@ -1,6 +1,6 @@
 #include "ControladorUsuarios.h"
 
-ControladorUsuarios::ControladorUsuarios (iCollection usuarios){
+ControladorUsuarios::ControladorUsuarios (ICollection *usuarios){
     
 };
 

@@ -1,6 +1,6 @@
 #include "Usuarios.h"
 
-Usuarios::Usuarios(string nom, string email, string url, string passwd, iDictionary asignaturas, iCollection clases){
+Usuarios::Usuarios(string nom, string email, string url, string passwd, ICollection *asignaturas, ICollection *clases){
     this->Nombre=nom;
     this->eMail=email;
     this->URL_Imagen=url;
@@ -25,11 +25,11 @@ void Usuarios::setContra(string passwd){
      this->contraseña=passwd;
 };
 
-void Usuarios::setListaClases(iCollection clases){
+void Usuarios::setListaClases (ICollection *clases){
     this->listaClases=clases;
 };
 
-void Usuarios::setListaAsig(iDictionary asignaturas){
+void Usuarios::setListaAsig (ICollection *asignaturas){
     this->listaAsignatura=asignaturas;
 };
 
@@ -49,10 +49,10 @@ string Usuarios::getPasswd(){
     return this->contraseña;
 };
 
-iDictionary Usuarios::getListaAsig(){
+ICollection *Usuarios::getListaAsig(){
     return this->listaAsignatura;
 };
 
-iCollection Usuarios::getListaClases(){
+ICollection *Usuarios::getListaClases(){
     return this->listaClases;
 };

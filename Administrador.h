@@ -2,12 +2,16 @@
 #define ADMINISTRADOR_H
 
 using namespace std;
-#include "string"
+#include "ColeccionesG/ICollection.h"
+#include "ColeccionesG/IDictionary.h"
 #include "Usuarios.h"
+#include "string"
 
-class Administrador: public Usuarios{
+class Administrador : public Usuarios{
+private:
+    
 public:
-    Administrador (string, string, string, string, iDictionary, iCollection, string);
+    Administrador (string, string, string, string, ICollection*, ICollection*, string);
     void altaUsuario();
     void altaAsignatura();
     void asigDocenteAsignatura();
