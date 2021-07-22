@@ -3,7 +3,11 @@
 
 #include "Reproducciones.h"
 
-Reproducciones::Reproducciones() {
+Reproducciones::Reproducciones(Estudiantes *estudiante, Clases *clase, DtFecha fecha, DtTimeStamp hora) {
+    this->estudiante=estudiante;
+    this->clase=clase;
+    this->fecha=fecha;
+    this->hora=hora;
 }
 
 Reproducciones::Reproducciones(const Reproducciones& orig) {
