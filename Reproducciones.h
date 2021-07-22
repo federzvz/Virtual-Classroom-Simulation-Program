@@ -13,7 +13,7 @@ private:
     DtFecha fecha;
     DtTimeStamp hora;
 public:
-    Reproducciones();
+    Reproducciones(Estudiantes*, Clases*, DtFecha, DtTimeStamp);
     Reproducciones(const Reproducciones& orig);
     virtual ~Reproducciones();
     void setClase(Clases);
