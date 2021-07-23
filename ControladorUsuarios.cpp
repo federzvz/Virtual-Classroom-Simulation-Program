@@ -1,4 +1,5 @@
 #include "ControladorUsuarios.h"
+#include "ColeccionesG/Lista.h"
 
 ControladorUsuarios::ControladorUsuarios (ICollection *usuarios){
     
@@ -43,7 +44,6 @@ void ControladorUsuarios::cancelar(){
 void ControladorUsuarios::eliminarAsignatura(){
     
 };
-
 ICollection* ControladorUsuarios::Listarusuario(){
     IIterator* iter = this->usuarios->iterator();
     ICollection* Lista = new Lista();

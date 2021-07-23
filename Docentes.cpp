@@ -1,8 +1,8 @@
 #include "Docentes.h"
 
-Docentes::Docentes (string nom, string email, string url, string passwd, ICollection *asignaturas, ICollection *clases, string nombre_Instituto) : Usuarios(nom, email, url, passwd, asignaturas, clases){
-    this->nombre_Instituto=nombre_Instituto;
-};
+/*Docentes::Docentes (string nom, string email, string url, string passwd, iDictionary asignaturas, iCollection clases, string nombre_Instituto) : Usuarios(nom, email, url, passwd, asignaturas, clases){
+    this->nombre_Instituto=nom;
+};*/
 
 void Docentes::setNombre_Instituto(string nom){
     this->nombre_Instituto=nom;
@@ -21,7 +21,5 @@ void Docentes::finalizaciónDeClase(){
 };
 
 double Docentes::tiempoAsistenciaClase(){
-    double rslt;
     
-    return rslt;
 };

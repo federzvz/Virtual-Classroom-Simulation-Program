@@ -41,4 +41,3 @@ double Administrador::tiempoAsistenciaClase(){
     return rslt;
 };
 
-

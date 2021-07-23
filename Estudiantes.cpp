@@ -25,5 +25,3 @@ void Estudiantes::finalizaciónAsistenciaVivo(){
 void Estudiantes::inscripcionAsignatura(){
     
 };
-
-    
