@@ -7,11 +7,11 @@ class Mensajes {
 
 private:
     int id;
-    DtFecha fecha_envio;
-    DtTimeStamp hora_envio;
+    DtFecha *fecha_envio;
+    DtTimeStamp *hora_envio;
 
 public:
-    Mensajes();
+    Mensajes(int,DtFecha,DtTimeStamp);
     Mensajes(const Mensajes& orig);
     virtual ~Mensajes();
     void setID(int);

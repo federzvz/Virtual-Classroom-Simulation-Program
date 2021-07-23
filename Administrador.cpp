@@ -1,6 +1,6 @@
 #include "Administrador.h"
 
-Administrador::Administrador(string nom, string email, string url, string passwd, ICollection *asignaturas, ICollection *clases, string nombre_Instituto) : Usuarios(nom, email, url, passwd, asignaturas, clases){
+Administrador::Administrador(int cod,string nom, string email, string url, string passwd, ICollection *asignaturas, ICollection *clases, string nombre_Instituto) : Usuarios(cod,nom, email, url, passwd, asignaturas, clases){
     
 };
 
@@ -40,5 +40,4 @@ double Administrador::tiempoAsistenciaClase(){
     
     return rslt;
 };
-
 

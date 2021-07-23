@@ -1,15 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Clases.h
- * Author: Admin
- *
- * Created on 21 de julio de 2021, 08:13 PM
- */
 
 #ifndef CLASES_H
 #define CLASES_H
@@ -29,11 +17,11 @@ private:
     Docentes *docente;
     //iDictionary *estudiantes;
     //iDictionary *mensajes;
-    DtTimeStamp horaDeComienzo;
-    DtTimeStamp horaDeFinalizacion;
+    DtTimeStamp *horaDeComienzo;
+    DtTimeStamp *horaDeFinalizacion;
     string linkVideo;
 public:
-    Clases();
+    Clases(string,int,Asignaturas&,Docentes&,DtTimeStamp,DtTimeStamp,string);
     Clases(const Clases& orig);
     virtual ~Clases();
     string getNombre();

@@ -11,7 +11,7 @@ class Administrador : public Usuarios{
 private:
     
 public:
-    Administrador (string, string, string, string, ICollection*, ICollection*, string);
+    Administrador (int,string, string, string, string, ICollection*, ICollection*, string);
     void altaUsuario();
     void altaAsignatura();
     void asigDocenteAsignatura();
@@ -23,4 +23,3 @@ public:
 };
 
 #endif /* ADMINISTRADOR_H */
-

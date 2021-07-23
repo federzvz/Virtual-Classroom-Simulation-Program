@@ -1,6 +1,6 @@
 #include "Estudiantes.h"
 
-Estudiantes::Estudiantes (string nom, string email, string url, string passwd, ICollection *asignaturas, ICollection *clases, string cedula) : Usuarios(nom, email, url, passwd, asignaturas, clases){
+Estudiantes::Estudiantes (int cod, string nom, string email, string url, string passwd, ICollection *asignaturas, ICollection *clases, string cedula) : Usuarios(cod,nom, email, url, passwd, asignaturas, clases){
     this->cedula=cedula;
 };
 
@@ -25,5 +25,3 @@ void Estudiantes::finalizaciónAsistenciaVivo(){
 void Estudiantes::inscripcionAsignatura(){
     
 };
-
-    
