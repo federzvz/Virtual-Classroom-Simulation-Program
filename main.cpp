@@ -31,6 +31,18 @@ IDictionary *listaClasesPracticas= new ListDicc();
 IDictionary *listaClasesMonitoreo= new ListDicc();
 IDictionary *listaReproducciones= new ListDicc();
 
+void showshit(){
+IIterator* iter = listaUsuarios->getIteratorObj();
+Usuarios* algo = (Usuarios*) iter->getCurrent();
+    while(iter->hasNext()){
+        cout<<algo->getNombre()<<endl;
+        cout<<algo->geteMail()<<endl;
+        cout<<algo->getImagen()<<endl;
+        cout<<algo->getPasswd()<<endl;
+        iter->next();
+    }
+}
+
 int CantAdministradores=0;
 
 int main(int argc, char** argv) {
@@ -58,7 +70,34 @@ int main(int argc, char** argv) {
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
                         case 1: //Alta de usuario OBLIGATORIA
-                            
+                            cout<<"Nombre: ";
+                                cin>>username;
+                                cout<<"Email: ";
+                                cin>>mail;
+                                cout<<"Url imagen: ";
+                                cin>>url;
+                                cout<<"Contraseña: ";
+                                cin>>password;
+                                cout<<"El usuario es:"<<endl;
+                                cout<<"1)Admin"<<endl;
+                                cout<<"2)Docente"<<endl;
+                                cout<<"3)Estudiante"<<endl;
+                                cin>>usu_opc;
+                                if(usu_opc==2){
+                                    cout<<"Ingrese el nombre del Instituto: ";
+                                    cin>>nom_inst;
+                                }
+                                else if(usu_opc==3){
+                                    cout<<"Ingrese la cedula del estudiante: ";
+                                    cin>>cedula;
+                                }
+                                //Root->altaUsuario(username,mail,url,password,listaUsuarios,listaAdministradores,listaDocentes,listaEstudiantes,asignaturas,clases,usu_opc,cedula,nom_inst);
+                                
+                                cout<<"Desea seguir ingresando valores? s/n ";
+                                cin>>seguir;
+                            }while(seguir=='s');
+                            showshit();
+                        
                             break;
                         case 2: //Alta de Asignatura OBLIGATORIA
                             cout<<"Alta de Asignatura"<<endl;
