@@ -103,7 +103,7 @@ int main(int argc, char** argv) {
                 cin>>username;
                 cout<<"Contrasenia: ";
                 cin>>password;
-                if(LoginDocente(username,password)){
+                if(LoginDocente(listaDocentes,username,password)){
                     MenuDocente();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
@@ -126,7 +126,7 @@ int main(int argc, char** argv) {
                 cin>>username;
                 cout<<"Contrasenia: ";
                 cin>>password;
-                if(LoginEstudiante(username,password)){
+                if(LoginEstudiante(listaEstudiantes,username,password)){
                     MenuEstudiante();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
