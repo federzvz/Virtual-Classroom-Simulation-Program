@@ -24,10 +24,16 @@ IDictionary *listaUsuarios= new ListDicc();
 IDictionary *listaDocentes= new ListDicc();
 IDictionary *listaAdministradores= new ListDicc();
 IDictionary *listaEstudiantes= new ListDicc();
+IDictionary *listaAsignaturas= new ListDicc();
+IDictionary *listaClases= new ListDicc();
+IDictionary *listaClasesTeoricas= new ListDicc();
+IDictionary *listaClasesPracticas= new ListDicc();
+IDictionary *listaClasesMonitoreo= new ListDicc();
+IDictionary *listaReproducciones= new ListDicc();
+Estudiantes *usuarioEst=NULL;
+Docentes *usuarioDoc=NULL;
+Administrador *usuarioAdmin=NULL;
 
-ICollection *asignaturas= new Lista();
-ICollection *clases= new Lista();
-Administrador *Root = new Administrador(1,"root","root","root","/imagen0",asignaturas,clases);
 int CantAdministradores=0;
 
 using namespace std;
@@ -48,6 +54,7 @@ int main(int argc, char** argv) {
                 cout<<"Contrasenia: ";
                 cin>>password;
                 if(LoginAdmin(listaAdministradores,username,password)==true){
+                    *usuarioAdmin=RetornarAdmin(listaAdministradores,username,password);
                     MenuAdministrador();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
@@ -104,6 +111,7 @@ int main(int argc, char** argv) {
                 cout<<"Contrasenia: ";
                 cin>>password;
                 if(LoginDocente(listaDocentes,username,password)){
+                    *usuarioDoc=RetornarDocente(listaDocentes,username,password);
                     MenuDocente();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
@@ -127,6 +135,7 @@ int main(int argc, char** argv) {
                 cout<<"Contrasenia: ";
                 cin>>password;
                 if(LoginEstudiante(listaEstudiantes,username,password)){
+                    *usuarioEst=RetornarEstudiante(listaEstudiantes,username,password);
                     MenuEstudiante();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
