@@ -12,7 +12,7 @@ private:
     
 public:
     Administrador (string, string, string, string, ICollection*, ICollection*, string);
-    void altaUsuario();
+    void altaUsuario(string,string,string,string,IDictionary*,IDictionary*,IDictionary*,IDictionary*,ICollection*,ICollection*,int,string,string);
     void altaAsignatura();
     void asigDocenteAsignatura();
     void eliminarAsignatura();
