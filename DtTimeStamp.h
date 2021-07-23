@@ -10,14 +10,11 @@ private:
     int min;
     int seg;
 public:
-    DtTimeStamp();
+    DtTimeStamp(int,int,int,DtFecha);
     DtTimeStamp(const DtTimeStamp& orig);
     virtual ~DtTimeStamp();
-    void setHr(int);
     int getHr();
-    void setMin(int);
     int getMin();
-    void setSeg(int);
     int getSeg();
     void setFecha(DtFecha);
     DtFecha getFecha();
