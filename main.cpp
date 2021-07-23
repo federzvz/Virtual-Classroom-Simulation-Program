@@ -16,13 +16,26 @@
 #include "Reproducciones.h"
 #include "Usuarios.h"
 #include <string>
+#include "ColeccionesG/IDictionary.h"
+#include "ColeccionesG/ListaDicc.h"
+#include "ColeccionesG/Lista.h"
+
+IDictionary *listaUsuarios= new ListDicc();
+IDictionary *listaDocentes= new ListDicc();
+IDictionary *listaAdministradores= new ListDicc();
+IDictionary *listaEstudiantes= new ListDicc();
+
+ICollection *asignaturas= new Lista();
+ICollection *clases= new Lista();
+Administrador *Root = new Administrador(1,"root","root","root","/imagen0",asignaturas,clases);
 
 using namespace std;
 
 int main(int argc, char** argv) {
     int opcionMenu,opcionSubMenu;
-    string username, password;
-    
+    string username, password,mail,url,cedula,nom_inst;
+    char seguir;
+    int usu_opc;
     do{
         MainMenu();
         cin>>opcionMenu;
@@ -37,7 +50,33 @@ int main(int argc, char** argv) {
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
                         case 1: //Alta de usuario OBLIGATORIA
-                            
+                            do{
+                                cout<<"Nombre: ";
+                                cin>>username;
+                                cout<<"Email: ";
+                                cin>>mail;
+                                cout<<"Url imagen: ";
+                                cin>>url;
+                                cout<<"Contraseña: ";
+                                cin>>password;
+                                cout<<"El usuario es:"<<endl;
+                                cout<<"1)Admin"<<endl;
+                                cout<<"2)Docente"<<endl;
+                                cout<<"3)Estudiante"<<endl;
+                                cin>>usu_opc;
+                                if(usu_opc==2){
+                                    cout<<"Ingrese el nombre del Instituto: ";
+                                    cin>>nom_inst;
+                                }
+                                else if(usu_opc==3){
+                                    cout<<"Ingrese la cedula del estudiante: ";
+                                    cin>>cedula;
+                                }
+                                Root->altaUsuario(username,mail,url,password,listaAdministradores,listaDocentes,listaEstudiantes,asignaturas,clases,usu_opc,cedula,nom_inst);
+                                
+                                cout<<"Desea seguir ingresando valores? s/n ";
+                                cin>>seguir;
+                            }while(seguir=='s');
                             break;
                         case 2: //Alta de Asignatura OBLIGATORIA
                             

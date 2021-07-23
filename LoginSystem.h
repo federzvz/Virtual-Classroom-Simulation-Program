@@ -1,6 +1,7 @@
 #ifndef LOGINSYSTEM_H
 #define LOGINSYSTEM_H
 #include <string>
+#include "ColeccionesG/IDictionary.h"
 
 using namespace std;
 

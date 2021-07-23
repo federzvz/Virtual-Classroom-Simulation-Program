@@ -9,7 +9,7 @@ class Docentes: public Usuarios{
 private:
     string nombre_Instituto;
 public:
-    //Docentes (int,string, string, string, string, iDictionary, iCollection, string);
+    Docentes (int,string, string, string, string, ICollection*, ICollection*, string);
     void setNombre_Instituto(string);
     string getNombre_Instituto();
     void inicioDeClase();
