@@ -44,4 +44,14 @@ void ControladorUsuarios::eliminarAsignatura(){
     
 };
 
-
+ICollection* ControladorUsuarios::Listarusuario(){
+    IIterator* iter = this->usuarios->iterator();
+    ICollection* Lista = new Lista();
+    while(iter->hasNext()){
+        Usuarios* algo = (Usuarios*) iter->getCurrent();
+        Lista->add(algo);
+        iter->next();
+    }
+    delete iter;
+    return Lista;
+}
