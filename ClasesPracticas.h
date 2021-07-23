@@ -1,10 +1,17 @@
 #ifndef CLASESPRACTICAS_H
 #define CLASESPRACTICAS_H
-#include "Clases.h"
 
-class ClasesPracticas:public Clases {
+using namespace std;
+#include "Clases.h"
+#include "ColeccionesG/IDictionary.h"
+#include "DtTimeStamp.h"
+#include "Asignaturas.h"
+#include "Docentes.h"
+#include "string"
+
+class ClasesPracticas: public Clases {
 public:
-    ClasesPracticas(string,int,Asignaturas&,Docentes&,DtTimeStamp,DtTimeStamp,string);
+    ClasesPracticas(string, int, Asignaturas*, Docentes*, IDictionary*, IDictionary*, DtTimeStamp*, DtTimeStamp*, string);
 private:
 
 };
