@@ -1,19 +1,17 @@
+
 #ifndef MENSAJES_H
 #define MENSAJES_H
+
 #include "DtFecha.h"
 #include "DtTimeStamp.h"
 
 class Mensajes {
-
 private:
     int id;
     DtFecha *fecha_envio;
     DtTimeStamp *hora_envio;
-
 public:
-    Mensajes(int,DtFecha,DtTimeStamp);
-    Mensajes(const Mensajes& orig);
-    virtual ~Mensajes();
+    Mensajes(int, DtFecha, DtTimeStamp);
     void setID(int);
     int getID();
     void setFecha(DtFecha);

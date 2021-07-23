@@ -1,5 +1,6 @@
 #include "ClasesPracticas.h"
 
-ClasesPracticas::ClasesPracticas(string nombre_x,int num,Asignaturas& asig_x,Docentes& doc_x,DtTimeStamp start,DtTimeStamp finish,string Url) : Clases(nombre_x,num,asig_x,doc_x,start,finish,Url) {
-}
+ClasesPracticas::ClasesPracticas(string nombre, int numero, Asignaturas *asignatura, Docentes *docente, IDictionary *estudiantes, IDictionary *mensajes, DtTimeStamp *horaComienzo, DtTimeStamp *horaFinal, string linkVideo) : Clases(nombre, numero, asignatura, docente, estudiantes, mensajes, horaComienzo, horaFinal, linkVideo) {
+
+};
 

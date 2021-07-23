@@ -1,12 +1,4 @@
 #include "LoginSystem.h"
-#include "Usuarios.h"
-#include "ColeccionesG/IDictionary.h"
-#include "ColeccionesG/ListaDicc.h"
-#include "ColeccionesG/Lista.h"
-#include "ColeccionesG/KeyInt.h"
-#include "Administrador.h"
-#include "Docentes.h"
-#include "Estudiantes.h"
 
 
 void CrearRoot(int& CantAdministradores, IDictionary& listaAdministradores){ //CREA UN USUARIO ROOT, Y LO AÑADE AL Diccionario ListaAdministradores del Main
@@ -32,17 +24,16 @@ bool LoginAdmin (IDictionary* ListaAdmin,string username, string password){ //Ve
     return false; 
 }
 
-Administrador RetornarAdmin (IDictionary* ListaAdmin,string username, string password){ //Verifica que el usuario 
+Administrador *RetornarAdmin (IDictionary* ListaAdmin,string username, string password){ //Verifica que el usuario 
     IIterator* iterador = ListaAdmin->getIteratorObj();
     while(iterador->hasNext()){
         Usuarios* AdminAux = (Usuarios*)(iterador->getCurrent());
         if(AdminAux->getPasswd() == password && AdminAux->getNombre() == username){
             Administrador* AdminUser = (Administrador*)(iterador->getCurrent());
-            return *AdminUser;
+            return AdminUser;
         }
         iterador->next();
     }
-    
     delete iterador;
 }
 
@@ -59,13 +50,13 @@ bool LoginDocente (IDictionary* ListaDocente,string username, string password){
     return false;
 }
 
-Docentes RetornarDocente (IDictionary* ListaDocente,string username, string password){ //Verifica que el usuario 
+Docentes *RetornarDocente (IDictionary* ListaDocente,string username, string password){ //Verifica que el usuario 
     IIterator* iterador = ListaDocente->getIteratorObj();
     while(iterador->hasNext()){
         Usuarios* DocenteAux = (Usuarios*)(iterador->getCurrent());
         if(DocenteAux->getPasswd() == password && DocenteAux->getNombre() == username){
             Docentes* DocenteUser = (Docentes*)(iterador->getCurrent());
-            return *DocenteUser;
+            return DocenteUser;
         }
         iterador->next();
     }
@@ -86,55 +77,16 @@ bool LoginEstudiante (IDictionary* ListaEstudiante,string username, string passw
     return false;
 }
 
-Estudiantes RetornarEstudiante (IDictionary* ListaEstudiante,string username, string password){ //Verifica que el usuario 
+Estudiantes *RetornarEstudiante (IDictionary* ListaEstudiante,string username, string password){ //Verifica que el usuario 
     IIterator* iterador = ListaEstudiante->getIteratorObj();
     while(iterador->hasNext()){
         Usuarios* DocenteAux = (Usuarios*)(iterador->getCurrent());
         if(DocenteAux->getPasswd() == password && DocenteAux->getNombre() == username){
             Estudiantes* EstudianteUser = (Estudiantes*)(iterador->getCurrent());
-            return *EstudianteUser;
+            return EstudianteUser;
         }
         iterador->next();
     }
     
     delete iterador;
 }
-
-
-
-
-    
-    
-//    IIterator* iterador = EstadosConv->iterator();
-//    IDictionary* resultado = new ListDicc();
-//    while (iterador->hasNext()) {
-//        EstadoConv* estado = (EstadoConv*) (iterador->getCurrent());
-//        Conversacion* conv = estado->getConversacion();
-//        Grupo* convg = dynamic_cast<Grupo*> (conv);
-//        if (convg) {
-//            if (convg->getAdministradores()->member(new KeyString(this->NumTel)))
-//                resultado->add(new DtConversacion(2, convg->getNombre(), " ", convg->getNomG(), 0), new KeyString(convg->getNombre()));
-//        }
-//        iterador->next();
-//    }
-//    
-//    
-//    IDictionary* ControladorU::ListarContactos() {//lista todos los usuarios del sistema
-//    if (u == NULL)
-//        throw std::invalid_argument("No hay una sesion activa");
-//    if (this->usuarios->size() < 2)
-//        throw std::invalid_argument("No hay usuarios en el sistema");
-//
-//    IIterator* iter = u->verContactos()->getIteratorObj();
-//    IDictionary* contactos = new ListDicc();
-//    while (iter->hasNext()) {
-//        DtUsuario* usuario = (DtUsuario*) (iter->getCurrent());
-//        contactos->add(usuario, new KeyString(usuario->getNumero()));
-//        iter->next();
-//    }
-//    delete iter;
-//    return contactos;
-//    
-//    delete iterador;
-//    return resultado;
-    

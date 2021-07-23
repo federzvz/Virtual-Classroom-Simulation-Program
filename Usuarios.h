@@ -8,7 +8,7 @@ using namespace std;
 
 class Usuarios: public ICollectible {
 private:
-    int ID;
+    int Id;
     string Nombre;
     string eMail;
     string URL_Imagen;
@@ -16,15 +16,15 @@ private:
     ICollection *listaAsignatura;
     ICollection *listaClases;
 public:
-    Usuarios (int,string, string, string, string, ICollection*, ICollection*);
-    void setID(int);
+    Usuarios (int, string, string, string, string, ICollection*, ICollection*);
+    void setId(int);
     void setNombre(string);
     void seteMail(string);
     void setImagen(string);
     void setContra(string);
     void setListaAsig(ICollection*);
     void setListaClases(ICollection*);
-    int getID();
+    int getId();
     string getNombre();
     string geteMail();
     string getImagen();
@@ -34,3 +34,4 @@ public:
 };
 
 #endif /* USUARIOS_H */
+
