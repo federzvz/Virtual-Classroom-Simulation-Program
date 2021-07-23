@@ -36,6 +36,7 @@ int main(int argc, char** argv) {
     string username, password,mail,url,cedula,nom_inst;
     char seguir;
     int usu_opc;
+    CrearRoot(CantAdministradores, *listaAdministradores);
     do{
         MainMenu();
         cin>>opcionMenu;
@@ -45,7 +46,7 @@ int main(int argc, char** argv) {
                 cin>>username;
                 cout<<"Contrasenia: ";
                 cin>>password;
-                if(LoginAdmin(username,password)){
+                if(LoginAdmin(listaAdministradores,username,password)==true){
                     MenuAdministrador();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
