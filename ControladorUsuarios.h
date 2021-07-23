@@ -20,6 +20,7 @@ public:
     void confirmar();
     void cancelar();
     void eliminarAsignatura();
+    ICollection* Listarusuario();
 };
 
 
