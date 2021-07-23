@@ -3,6 +3,7 @@
 
 using namespace std;
 #include "ColeccionesG/ICollection.h"
+#include "Usuarios.h"
 #include "string"
 
 class ControladorUsuarios{
