@@ -28,6 +28,7 @@ IDictionary *listaEstudiantes= new ListDicc();
 ICollection *asignaturas= new Lista();
 ICollection *clases= new Lista();
 Administrador *Root = new Administrador(1,"root","root","root","/imagen0",asignaturas,clases);
+int CantAdministradores=0;
 
 using namespace std;
 
