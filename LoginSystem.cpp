@@ -4,9 +4,12 @@
 #include "ColeccionesG/ListaDicc.h"
 #include "ColeccionesG/Lista.h"
 #include "ColeccionesG/KeyInt.h"
+#include "Administrador.h"
+#include "Docentes.h"
+#include "Estudiantes.h"
 
 
-void CrearRoot(int& CantAdministradores, IDictionary& listaAdministradores){
+void CrearRoot(int& CantAdministradores, IDictionary& listaAdministradores){ //CREA UN USUARIO ROOT, Y LO AÑADE AL Diccionario ListaAdministradores del Main
     ICollection *asignaturas = new Lista();
     ICollection *clases = new Lista();
     KeyInt* key = new KeyInt(CantAdministradores);
@@ -15,7 +18,7 @@ void CrearRoot(int& CantAdministradores, IDictionary& listaAdministradores){
     CantAdministradores++;
 }
 
-bool LoginAdmin (IDictionary* ListaAdmin,string username, string password){
+bool LoginAdmin (IDictionary* ListaAdmin,string username, string password){ //Verifica que el usuario 
     IIterator* iterador = ListaAdmin->getIteratorObj();
     while(iterador->hasNext()){
         Usuarios* AdminAux = (Usuarios*)(iterador->getCurrent());
@@ -29,6 +32,20 @@ bool LoginAdmin (IDictionary* ListaAdmin,string username, string password){
     return false; 
 }
 
+Administrador RetornarAdmin (IDictionary* ListaAdmin,string username, string password){ //Verifica que el usuario 
+    IIterator* iterador = ListaAdmin->getIteratorObj();
+    while(iterador->hasNext()){
+        Usuarios* AdminAux = (Usuarios*)(iterador->getCurrent());
+        if(AdminAux->getPasswd() == password && AdminAux->getNombre() == username){
+            Administrador* AdminUser = (Administrador*)(iterador->getCurrent());
+            return *AdminUser;
+        }
+        iterador->next();
+    }
+    
+    delete iterador;
+}
+
 bool LoginDocente (IDictionary* ListaDocente,string username, string password){
     IIterator* iterador = ListaDocente->getIteratorObj();
     while(iterador->hasNext()){
@@ -38,9 +55,22 @@ bool LoginDocente (IDictionary* ListaDocente,string username, string password){
         }
         iterador->next();
     }
-    
     delete iterador;
     return false;
+}
+
+Docentes RetornarDocente (IDictionary* ListaDocente,string username, string password){ //Verifica que el usuario 
+    IIterator* iterador = ListaDocente->getIteratorObj();
+    while(iterador->hasNext()){
+        Usuarios* DocenteAux = (Usuarios*)(iterador->getCurrent());
+        if(DocenteAux->getPasswd() == password && DocenteAux->getNombre() == username){
+            Docentes* DocenteUser = (Docentes*)(iterador->getCurrent());
+            return *DocenteUser;
+        }
+        iterador->next();
+    }
+    
+    delete iterador;
 }
 
 bool LoginEstudiante (IDictionary* ListaEstudiante,string username, string password){
@@ -54,6 +84,20 @@ bool LoginEstudiante (IDictionary* ListaEstudiante,string username, string passw
     }
     delete iterador;
     return false;
+}
+
+Estudiantes RetornarEstudiante (IDictionary* ListaEstudiante,string username, string password){ //Verifica que el usuario 
+    IIterator* iterador = ListaEstudiante->getIteratorObj();
+    while(iterador->hasNext()){
+        Usuarios* DocenteAux = (Usuarios*)(iterador->getCurrent());
+        if(DocenteAux->getPasswd() == password && DocenteAux->getNombre() == username){
+            Estudiantes* EstudianteUser = (Estudiantes*)(iterador->getCurrent());
+            return *EstudianteUser;
+        }
+        iterador->next();
+    }
+    
+    delete iterador;
 }
 
 
