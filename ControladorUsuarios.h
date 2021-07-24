@@ -23,6 +23,7 @@ public:
     void cancelar();
     void eliminarAsignatura();
     ICollection *listarusuario();
+    void MostrarUsuarios(IDictionary*);
 };
 
 
