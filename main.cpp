@@ -97,7 +97,7 @@ int main(int argc, char** argv) {
                                 cout<<"Desea seguir ingresando valores? s/n ";
                                 cin>>seguir;
                             }while(seguir=='s');
-                            showshit();
+                            MostrarUsuario();
                         
                             break;
                         case 2: //Alta de Asignatura OBLIGATORIA
