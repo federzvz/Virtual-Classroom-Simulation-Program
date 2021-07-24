@@ -1,54 +1,24 @@
-#include "ControladorAsignaturas.h"
-#include "ColeccionesG/ListaDicc.h"
-#include <iostream>
+#ifndef CONTROLADORASIGNATURAS_H
+#define CONTROLADORASIGNATURAS_H
 
-ControladorAsignaturas::ControladorAsignaturas(IDictionary *asignaturas) {
-    this->asignaturas=asignaturas;
+using namespace std;
+#include "string"
+#include "ColeccionesG/IDictionary.h"
+#include "ColeccionesG/ICollection.h"
+#include "ColeccionesG/KeyString.h"
+#include "Asignaturas.h"
+
+
+class ControladorAsignaturas{
+private:
+    IDictionary *asignaturas;
+public:
+    ControladorAsignaturas(IDictionary*);
+    //void ListarAsignaturas(ICollection*);
+    IDictionary* ListarAsignaturas();
+    void MostrarAsignaturas(IDictionary*);
+    bool confirmar();
 };
 
-bool ControladorAsignaturas::confirmar(){
-    char letra;
-    bool decision;
-    cout<<"Confirmar? (s/n)"<<endl;
-    cin>>letra;
-    if (letra=='s' || letra=='S'){
-        decision=true;
-    }
-    else{
-        decision=false;
-    }
-    return decision;
-};
-//
-//void ControladorAsignaturas::ListarAsignaturas(ICollection* ListaAsignaturas){
-//    IIterator* iterador = ListaAsignaturas->iterator();
-//    while(iterador->hasNext()){
-//        Asignaturas* AsignaturaAux = (Asignaturas*)(iterador->getCurrent());
-//        cout<<AsignaturaAux->getNombre()<<endl;
-//        iterador->next();
-//    }
-//};
-
-void ControladorAsignaturas::MostrarAsignaturas(IDictionary* asignaturas_){
-    IIterator* iterador = asignaturas_->getIteratorObj();
-    IDictionary* lista = new ListDicc();
-    while(iterador->hasNext()){
-        Asignaturas* AsignaturaAux = (Asignaturas*) iterador->getCurrent();
-        cout<<AsignaturaAux->getNombre()<<endl;
-        iterador->next();
-    }
-    delete iterador;
-}
-
-IDictionary* ControladorAsignaturas::ListarAsignaturas(){
-    IIterator* iterador = this->asignaturas->getIteratorObj();
-    IDictionary* lista = new ListDicc();
-    while(iterador->hasNext()){
-        Asignaturas* AsignaturaAux = (Asignaturas*) iterador->getCurrent();
-        lista->add(AsignaturaAux, new KeyString(AsignaturaAux->getCodigo()));
-        iterador->next();
-    }
-    delete iterador;
-    return lista;
-}
+#endif /* CONTROLADORASIGNATURAS_H */
 
