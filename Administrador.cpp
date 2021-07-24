@@ -2,7 +2,7 @@
 #include "Asignaturas.h"
 #include "ColeccionesG/ListDiccIterator.h"
 #include "ColeccionesG/KeyString.h"
-
+int i=1;
 Administrador::Administrador(int id, string nom, string email, string url, string passwd, ICollection *asignaturas, ICollection *clases, string nombre_Instituto) : Usuarios(id, nom, email, url, passwd, asignaturas, clases){
     
 };
@@ -15,18 +15,21 @@ void Administrador::altaUsuario(string nom,string mail,string contra,string url,
         KeyInt* key = new KeyInt(Admin->getID());
         listaAdmin->add(Admin,key);
         listaUser->add(Admin,key);
+        i++;
     }
     else if(usu_opc==2){
         Usuarios *Doc = new Docentes(i,nom,mail,contra,url,asignaturas,clases,nom_inst);
         KeyInt* key = new KeyInt(Doc->getID());
         listaDoc->add(Doc,key);
         listaUser->add(Doc,key);
+        i++;
     }
     else if(usu_opc==3){
         Usuarios *Est = new Estudiantes(i,nom,mail,contra,url,asignaturas,clases,cedula);
         KeyInt* key = new KeyInt(Est->getID());
         listaEst->add(Est,key);
         listaUser->add(Est,key);
+        i++;
     }
 };
 
