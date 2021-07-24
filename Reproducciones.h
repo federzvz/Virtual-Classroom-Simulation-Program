@@ -10,10 +10,10 @@ class Reproducciones {
 private:
     Estudiantes *estudiante;
     Clases *clase;
-    DtFecha fecha;
-    DtTimeStamp hora;
+    DtFecha *fecha;
+    DtTimeStamp *hora;
 public:
-    Reproducciones(Estudiantes*, Clases*, DtFecha, DtTimeStamp);
+    Reproducciones();
     Reproducciones(const Reproducciones& orig);
     virtual ~Reproducciones();
     void setClase(Clases);

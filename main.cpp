@@ -16,13 +16,43 @@
 #include "Reproducciones.h"
 #include "Usuarios.h"
 #include <string>
+#include "ColeccionesG/IDictionary.h"
+#include "ColeccionesG/ListaDicc.h"
+#include "ColeccionesG/Lista.h"
+#include "ControladorAsignaturas.h"
+#include "ControladorUsuarios.h"
+
+IDictionary *listaUsuarios= new ListDicc();
+IDictionary *listaDocentes= new ListDicc();
+IDictionary *listaAdministradores= new ListDicc();
+IDictionary *listaEstudiantes= new ListDicc();
+IDictionary *listaAsignaturas= new ListDicc();
+IDictionary *listaClases= new ListDicc();
+IDictionary *listaClasesTeoricas= new ListDicc();
+IDictionary *listaClasesPracticas= new ListDicc();
+IDictionary *listaClasesMonitoreo= new ListDicc();
+IDictionary *listaReproducciones= new ListDicc();
+
+ICollection *asignaturas= new Lista();
+ICollection *clases= new Lista();
+ICollection *usuarios= new Lista();
+
+int CantAdministradores=0;
 
 using namespace std;
 
 int main(int argc, char** argv) {
-    int opcionMenu,opcionSubMenu;
-    string username, password;
-    
+    int opcionMenu,opcionSubMenu,i=0,j=0;
+    string username, password,mail,url,cedula,nom_inst, nomAsig, codAsig;
+    char seguir, tipoClases;
+    bool teoricas, practicas, monitoreo;
+    int usu_opc;
+    ControladorUsuarios *controladorU= new ControladorUsuarios(usuarios);
+    ControladorAsignaturas *controladorA= new ControladorAsignaturas(listaAsignaturas);
+    Estudiantes *usuarioEst=NULL;
+    Docentes *usuarioDoc=NULL;
+    Administrador *usuarioAdmin=NULL;
+    CrearRoot(CantAdministradores, *listaAdministradores);
     do{
         MainMenu();
         cin>>opcionMenu;
@@ -32,18 +62,107 @@ int main(int argc, char** argv) {
                 cin>>username;
                 cout<<"Contrasenia: ";
                 cin>>password;
-                if(LoginAdmin(username,password)){
+                if(LoginAdmin(listaAdministradores,username,password)==true){
                     MenuAdministrador();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
                         case 1: //Alta de usuario OBLIGATORIA
+                            do{
+                                cout<<"Nombre: ";
+                                cin>>username;
+                                cout<<"Email: ";
+                                cin>>mail;
+                                cout<<"Url imagen: ";
+                                cin>>url;
+                                cout<<"Contraseña: ";
+                                cin>>password;
+                                cout<<"El usuario es:"<<endl;
+                                cout<<"1)Admin"<<endl;
+                                cout<<"2)Docente"<<endl;
+                                cout<<"3)Estudiante"<<endl;
+                                cin>>usu_opc;
+                                if(usu_opc==2){
+                                    cout<<"Ingrese el nombre del Instituto: ";
+                                    cin>>nom_inst;
+                                }
+                                else if(usu_opc==3){
+                                    cout<<"Ingrese la cedula del estudiante: ";
+                                    cin>>cedula;
+                                }
+                                usuarioAdmin->altaUsuario(username,mail,url,password,listaUsuarios,listaAdministradores,listaDocentes,listaEstudiantes,asignaturas,clases,usu_opc,cedula,nom_inst);
+                                cout<<"Desea seguir ingresando valores? s/n ";
+                                cin>>seguir;
+                            }while(seguir=='s');
+                            
+                            controladorU->MostrarUsuarios(listaUsuarios);
                             
                             break;
                         case 2: //Alta de Asignatura OBLIGATORIA
-                            
+                            cout<<"Alta de Asignatura"<<endl;
+                            cout<<"Nombre: ";
+                            cin>>nomAsig;
+                            cout<<"Codigo: ";
+                            cin>>codAsig;
+                            cout<<"Posee instancias teoricas? (s/n)"<<endl;
+                            cin>>tipoClases;
+                            if (tipoClases=='s' || tipoClases=='S'){
+                                teoricas=true;
+                            }
+                            else{
+                                teoricas=false;
+                            }
+                            cout<<"Posee instancias practicas? (s/n)"<<endl;
+                            cin>>tipoClases;
+                            if (tipoClases=='s' || tipoClases=='S'){
+                                practicas=true;
+                            }
+                            else{
+                                practicas=false;
+                            }
+                            cout<<"Posee instancias de monitoreo? (s/n)"<<endl;
+                            cin>>tipoClases;
+                            if (tipoClases=='s' || tipoClases=='S'){
+                                monitoreo=true;
+                            }
+                            else{
+                                monitoreo=false;
+                            }
+                            //Mostrar datos ingresados
+                            cout<<endl<<"Datos ingresados"<<endl;
+                            cout<<"Nombre: ";
+                            cout<<nomAsig<<endl;
+                            cout<<"Codigo: ";
+                            cout<<codAsig<<endl;
+                            if (teoricas==true){
+                                cout<<"Clases teoricas: Si"<<endl;
+                            }
+                            else{
+                                cout<<"Clases teoricas: No"<<endl;
+                            }
+                            if (practicas==true){
+                                cout<<"Clases practicas: Si"<<endl;
+                            }
+                            else{
+                                cout<<"Clases practicas: No"<<endl;
+                            }
+                            if (monitoreo==true){
+                                cout<<"Clases de monitoreo: Si"<<endl;
+                            }
+                            else{
+                                cout<<"Clases de monitoreo: No"<<endl;
+                            }
+                            if(controladorA->confirmar()){
+                                usuarioAdmin->altaAsignatura(nomAsig, codAsig, teoricas, practicas, monitoreo, *listaAsignaturas);
+                            }
+                            break;
                             break;
                         case 3: //Asignacion de Docente Asignatura OBLIGATORIA
-                            
+                            cout<<"Asignacion de Docente:"<<endl;
+                            cout<<"ID del docente: ";
+                            cin>>i;
+                            cout<<"Codigo de la asignatura: ";
+                            cin>>codAsig;
+                            usuarioAdmin->asigDocenteAsignatura(i,codAsig,listaDocentes,listaAsignaturas);
                             break;
                         case 4: //Eliminar Asignatura OPCIONAL
                             
@@ -62,7 +181,7 @@ int main(int argc, char** argv) {
                 cin>>username;
                 cout<<"Contrasenia: ";
                 cin>>password;
-                if(LoginDocente(username,password)){
+                if(LoginDocente(listaDocentes,username,password)){
                     MenuDocente();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
@@ -85,7 +204,7 @@ int main(int argc, char** argv) {
                 cin>>username;
                 cout<<"Contrasenia: ";
                 cin>>password;
-                if(LoginEstudiante(username,password)){
+                if(LoginEstudiante(listaEstudiantes,username,password)){
                     MenuEstudiante();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
@@ -115,4 +234,3 @@ int main(int argc, char** argv) {
     
     return 0;
 }
-

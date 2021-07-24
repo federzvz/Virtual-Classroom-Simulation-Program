@@ -6,8 +6,9 @@ using namespace std;
 #include "ColeccionesG/IDictionary.h"
 #include "string"
 
-class Usuarios {
+class Usuarios: public ICollectible {
 private:
+    int ID;
     string Nombre;
     string eMail;
     string URL_Imagen;
@@ -15,13 +16,16 @@ private:
     ICollection *listaAsignatura;
     ICollection *listaClases;
 public:
-    Usuarios (string, string, string, string, ICollection*, ICollection*);
+    Usuarios (int,string, string, string, string, ICollection*, ICollection*);
+    void setID(int);
     void setNombre(string);
     void seteMail(string);
     void setImagen(string);
     void setContra(string);
     void setListaAsig(ICollection*);
     void setListaClases(ICollection*);
+    void addListaClases(ICollectible*);
+    int getID();
     string getNombre();
     string geteMail();
     string getImagen();
@@ -31,4 +35,3 @@ public:
 };
 
 #endif /* USUARIOS_H */
-

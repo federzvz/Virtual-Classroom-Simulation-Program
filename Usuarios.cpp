@@ -1,6 +1,8 @@
 #include "Usuarios.h"
+#include "ColeccionesG/Lista.h"
 
-Usuarios::Usuarios(string nom, string email, string url, string passwd, ICollection *asignaturas, ICollection *clases){
+Usuarios::Usuarios(int cod,string nom, string email, string url, string passwd, ICollection *asignaturas, ICollection *clases){
+    this->ID=cod;
     this->Nombre=nom;
     this->eMail=email;
     this->URL_Imagen=url;
@@ -8,6 +10,13 @@ Usuarios::Usuarios(string nom, string email, string url, string passwd, ICollect
     this->listaAsignatura=asignaturas;
     this->listaClases=clases;
 };
+void Usuarios::setID(int x){
+    this->ID=x;
+}
+
+int Usuarios::getID(){
+    return this->ID;
+}
 
 void Usuarios::setNombre(string nom){
     this->Nombre=nom;
@@ -56,3 +65,6 @@ ICollection *Usuarios::getListaAsig(){
 ICollection *Usuarios::getListaClases(){
     return this->listaClases;
 };
+void Usuarios::addListaClases(ICollectible* aux){
+    this->listaAsignatura->add(aux);
+}

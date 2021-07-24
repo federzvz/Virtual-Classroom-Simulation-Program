@@ -2,7 +2,14 @@
 
 #include "Clases.h"
 
-Clases::Clases() {
+Clases::Clases(string nombre_x,int num,Asignaturas& asig_x,Docentes& doc_x,DtTimeStamp start,DtTimeStamp finish,string Url){
+    this->nombre=nombre_x;
+    this->numero=num;
+    *this->asignatura=asig_x;
+    *this->docente=doc_x;
+    this->horaDeComienzo=&start;
+    this->horaDeFinalizacion=&finish;
+    this->linkVideo=Url;
 }
 
 Clases::Clases(const Clases& orig) {
@@ -18,10 +25,10 @@ int Clases::getNumero(){
     return this->numero;
 }
 DtTimeStamp Clases::getHoraComienzo(){
-    return this->horaDeComienzo;
+    return *this->horaDeComienzo;
 }
 DtTimeStamp Clases::getHoraFinal(){
-    return this->horaDeFinalizacion;
+    return *this->horaDeFinalizacion;
 }
 string Clases::getVideo(){
     return this->linkVideo;
@@ -41,10 +48,10 @@ void Clases::setNumero(int num){
     this->numero=num;
 }
 void Clases::setHoraComienzo(DtTimeStamp start){
-    this->horaDeComienzo=start;
+    this->horaDeComienzo=&start;
 }
 void Clases::setHoraFinal(DtTimeStamp finish){
-    this->horaDeFinalizacion=finish;
+    this->horaDeFinalizacion=&finish;
 }
 void Clases::setVideo(string Url){
     this->linkVideo=Url;

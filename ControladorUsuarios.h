@@ -22,8 +22,8 @@ public:
     void cancelar();
     void eliminarAsignatura();
     ICollection* Listarusuario();
+    void MostrarUsuarios(IDictionary*);
 };
 
 
 #endif /* CONTROLADORUSUARIOS_H */
-

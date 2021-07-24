@@ -11,7 +11,7 @@ class Estudiantes: public Usuarios{
 private:
     string cedula;
 public:
-    Estudiantes (string, string, string, string, ICollection*, ICollection*, string);
+    Estudiantes (int,string, string, string, string, ICollection*, ICollection*, string);
     void setCedula(string);
     string getCedula();
     float asistenciaClaseVivo();
@@ -20,4 +20,3 @@ public:
 };
 
 #endif /* ESTUDIANTES_H */
-
