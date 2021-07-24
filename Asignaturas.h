@@ -27,4 +27,3 @@ public:
 };
 
 #endif /* ASIGNATURAS_H */
-

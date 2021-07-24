@@ -7,4 +7,3 @@ void MenuDocente();
 void MenuEstudiante();
 
 #endif /* MENUS_H */
-

@@ -1,21 +1,20 @@
+
 #ifndef DTTIMESTAMP_H
 #define DTTIMESTAMP_H
-
 #include "DtFecha.h"
 
 class DtTimeStamp {
 private:
-    DtFecha *fecha;
+    DtFecha fecha;
     int hr;
     int min;
     int seg;
 public:
-    DtTimeStamp(DtFecha, int, int, int);
-    void setHr(int);
+    DtTimeStamp(int,int,int,DtFecha);
+    DtTimeStamp(const DtTimeStamp& orig);
+    virtual ~DtTimeStamp();
     int getHr();
-    void setMin(int);
     int getMin();
-    void setSeg(int);
     int getSeg();
     void setFecha(DtFecha);
     DtFecha getFecha();

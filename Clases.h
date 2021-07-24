@@ -1,12 +1,13 @@
+
 #ifndef CLASES_H
 #define CLASES_H
-
-using namespace std;
+#include "string"
 #include "Asignaturas.h"
 #include "Docentes.h"
 #include "DtTimeStamp.h"
-#include "ColeccionesG/IDictionary.h"
-#include "string"
+
+
+using namespace std;
 
 class Clases {
 private:
@@ -14,13 +15,15 @@ private:
     int numero;
     Asignaturas *asignatura;
     Docentes *docente;
-    IDictionary *estudiantes;
-    IDictionary *mensajes;
+    //iDictionary *estudiantes;
+    //iDictionary *mensajes;
     DtTimeStamp *horaDeComienzo;
     DtTimeStamp *horaDeFinalizacion;
     string linkVideo;
 public:
-    Clases(string, int, Asignaturas*, Docentes*, IDictionary*, IDictionary*, DtTimeStamp*, DtTimeStamp*, string);
+    Clases(string,int,Asignaturas&,Docentes&,DtTimeStamp,DtTimeStamp,string);
+    Clases(const Clases& orig);
+    virtual ~Clases();
     string getNombre();
     int getNumero();
     DtTimeStamp getHoraComienzo();
@@ -28,8 +31,8 @@ public:
     string getVideo();
     Asignaturas getAsignatura();
     Docentes getDocente();
-    IDictionary *getEstudiantes();
-    IDictionary *getMensajes();
+    //iDictionary getEstudiantes();
+    //iDictionary getMensajes();
     void setNombre(string);
     void setNumero(int);
     void setHoraComienzo(DtTimeStamp);
@@ -37,8 +40,8 @@ public:
     void setVideo(string);
     void setAsignatura(Asignaturas);
     void setDocente(Docentes);
-    void setEstudiantes(IDictionary*);
-    void setMensajes(IDictionary*);
+    //void setEstudiantes(iDictionary);
+    //void setMensajes(iDictionary);
     void envioDeMensaje(int);
     void mostrarDatosClase();
 

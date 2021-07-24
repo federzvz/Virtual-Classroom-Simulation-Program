@@ -3,9 +3,9 @@
 
 using namespace std;
 #include "ColeccionesG/ICollection.h"
-#include "ColeccionesG/Lista.h"
 #include "Usuarios.h"
 #include "string"
+#include "iostream";
 
 class ControladorUsuarios{
 private:
@@ -22,10 +22,9 @@ public:
     void confirmar();
     void cancelar();
     void eliminarAsignatura();
-    ICollection *listarusuario();
+    ICollection* Listarusuario();
     void MostrarUsuarios(IDictionary*);
 };
 
 
 #endif /* CONTROLADORUSUARIOS_H */
-

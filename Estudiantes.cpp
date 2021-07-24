@@ -100,5 +100,3 @@ void Estudiantes::inscripcionAsignatura(IDictionary *AsignaturasTotales){
             this->setListaAsig(nuevaListaAsignatura);
     }
 };
-
-    

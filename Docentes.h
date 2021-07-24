@@ -2,16 +2,15 @@
 #define DOCENTES_H
 
 using namespace std;
-#include "ColeccionesG/ICollection.h"
-#include "ColeccionesG/IDictionary.h"
-#include "Usuarios.h"
 #include "string"
+#include "Usuarios.h"
+#include "ColeccionesG/IDictionary.h"
 
 class Docentes: public Usuarios{
 private:
     string nombre_Instituto;
 public:
-    Docentes (int, string, string, string, string, ICollection*, ICollection*, string);
+    Docentes (int,string, string, string, string, ICollection*, ICollection*, string);
     void setNombre_Instituto(string);
     string getNombre_Instituto();
     void inicioDeClase();
@@ -20,4 +19,3 @@ public:
 };
 
 #endif /* DOCENTES_H */
-

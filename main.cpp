@@ -1,4 +1,5 @@
-#include "ControladorAsignaturas.h"
+#include <cstdlib>
+#include <iostream>
 #include "Menus.h"
 #include "Administrador.h"
 #include "Asignaturas.h"
@@ -14,10 +15,16 @@
 #include "Mensajes.h"
 #include "Reproducciones.h"
 #include "Usuarios.h"
-#include "ColeccionesG/ListaDicc.h"
 #include <string>
-#include <cstdlib>
-#include <iostream>
+#include "ColeccionesG/IDictionary.h"
+#include "ColeccionesG/ICollection.h"
+#include "ColeccionesG/ListaDicc.h"
+#include "ColeccionesG/Lista.h"
+#include "ColeccionesG/KeyInt.h"
+#include "ControladorAsignaturas.h"
+#include "ControladorUsuarios.h"
+
+
 using namespace std;
 
 IDictionary *listaUsuarios= new ListDicc();
@@ -30,21 +37,44 @@ IDictionary *listaClasesTeoricas= new ListDicc();
 IDictionary *listaClasesPracticas= new ListDicc();
 IDictionary *listaClasesMonitoreo= new ListDicc();
 IDictionary *listaReproducciones= new ListDicc();
-
+ICollection *clases= new Lista();
+ICollection *asignaturas= new Lista();
 ICollection *usuarios= new Lista();
+
+
+        
+                string nombre;
+        string codigo;
+        bool clasesTeoricas;
+        bool clasesPracticas;
+        bool clasesDeMonitoreo;
+
+//Estudiantes *usuarioEst=NULL;
+//Docentes *usuarioDoc=NULL;
+//Administrador *usuarioAdmin=NULL;
 
 int CantAdministradores=0;
 
+void showshit(){
+IIterator* iter = listaUsuarios->getIteratorObj();
+Usuarios* algo = (Usuarios*) iter->getCurrent();
+    while(iter->hasNext()){
+        cout<<algo->getNombre()<<endl;
+        cout<<algo->geteMail()<<endl;
+        cout<<algo->getImagen()<<endl;
+        cout<<algo->getPasswd()<<endl;
+        iter->next();
+    }
+}
+
 int main(int argc, char** argv) {
-    int opcionMenu,opcionSubMenu,i=0;
-    char tipoClases;
-    string username, password, nomAsig, codAsig;
+    int opcionMenu,opcionSubMenu,usu_opc,i;
+    string username, password,nomAsig, codAsig,mail,url,nom_inst,cedula;
+    char tipoClases,seguir;
     bool teoricas, practicas, monitoreo;
-    ControladorUsuarios *controladorU= new ControladorUsuarios(usuarios);
     ControladorAsignaturas *controladorA= new ControladorAsignaturas(listaAsignaturas);
-    Estudiantes *usuarioEst=NULL;
-    Docentes *usuarioDoc=NULL;
-    Administrador *usuarioAdmin=NULL;
+    ControladorUsuarios *controladorU= new ControladorUsuarios(usuarios);
+
     CrearRoot(CantAdministradores, *listaAdministradores);
     do{
         MainMenu();
@@ -56,12 +86,13 @@ int main(int argc, char** argv) {
                 cout<<"Contrasenia: ";
                 cin>>password;
                 if(LoginAdmin(listaAdministradores,username,password)==true){
-                    usuarioAdmin=RetornarAdmin(listaAdministradores,username,password);
+                    Administrador *usuarioAdmin = RetornarAdmin(listaAdministradores,username,password);
                     MenuAdministrador();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
                         case 1: //Alta de usuario OBLIGATORIA
-                            cout<<"Nombre: ";
+                            do{
+                                cout<<"Nombre: ";
                                 cin>>username;
                                 cout<<"Email: ";
                                 cin>>mail;
@@ -76,19 +107,17 @@ int main(int argc, char** argv) {
                                 cin>>usu_opc;
                                 if(usu_opc==2){
                                     cout<<"Ingrese el nombre del Instituto: ";
-                                    cin>>nom_inst;
+                                    cin>>nom_inst; 
                                 }
                                 else if(usu_opc==3){
                                     cout<<"Ingrese la cedula del estudiante: ";
                                     cin>>cedula;
                                 }
                                 usuarioAdmin->altaUsuario(username,mail,url,password,listaUsuarios,listaAdministradores,listaDocentes,listaEstudiantes,asignaturas,clases,usu_opc,cedula,nom_inst);
-                                
                                 cout<<"Desea seguir ingresando valores? s/n ";
                                 cin>>seguir;
                             }while(seguir=='s');
                             controladorU->MostrarUsuarios(listaUsuarios);
-                        
                             break;
                         case 2: //Alta de Asignatura OBLIGATORIA
                             cout<<"Alta de Asignatura"<<endl;
@@ -126,19 +155,19 @@ int main(int argc, char** argv) {
                             cout<<nomAsig<<endl;
                             cout<<"Codigo: ";
                             cout<<codAsig<<endl;
-                            if (teoricas=true){
+                            if (teoricas==true){
                                 cout<<"Clases teoricas: Si"<<endl;
                             }
                             else{
                                 cout<<"Clases teoricas: No"<<endl;
                             }
-                            if (practicas=true){
+                            if (practicas==true){
                                 cout<<"Clases practicas: Si"<<endl;
                             }
                             else{
                                 cout<<"Clases practicas: No"<<endl;
                             }
-                            if (monitoreo=true){
+                            if (monitoreo==true){
                                 cout<<"Clases de monitoreo: Si"<<endl;
                             }
                             else{
@@ -146,9 +175,11 @@ int main(int argc, char** argv) {
                             }
                             if(controladorA->confirmar()){
                                 usuarioAdmin->altaAsignatura(nomAsig, codAsig, teoricas, practicas, monitoreo, *listaAsignaturas);
+                                *controladorA = listaAsignaturas;
                             }
                             break;
                         case 3: //Asignacion de Docente Asignatura OBLIGATORIA
+                           
                             cout<<"Asignacion de Docente:"<<endl;
                             cout<<"ID del docente: ";
                             cin>>i;
@@ -167,6 +198,9 @@ int main(int argc, char** argv) {
                             break;
                     }
                 }
+                else{
+                    cout<<"ERROR \n";
+                }
                 break;
             case 2: //DOCENTE
                 cout<<"Usuario: ";
@@ -174,7 +208,7 @@ int main(int argc, char** argv) {
                 cout<<"Contrasenia: ";
                 cin>>password;
                 if(LoginDocente(listaDocentes,username,password)){
-                    usuarioDoc=RetornarDocente(listaDocentes,username,password);
+                    Docentes *usuarioDocente = RetornarDocente(listaDocentes,username,password);
                     MenuDocente();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
@@ -198,7 +232,7 @@ int main(int argc, char** argv) {
                 cout<<"Contrasenia: ";
                 cin>>password;
                 if(LoginEstudiante(listaEstudiantes,username,password)){
-                    usuarioEst=RetornarEstudiante(listaEstudiantes,username,password);
+                    Estudiantes *usuarioEstudiante = RetornarEstudiante(listaEstudiantes,username,password);
                     MenuEstudiante();
                     cin>>opcionSubMenu;
                     switch(opcionSubMenu){
@@ -209,7 +243,9 @@ int main(int argc, char** argv) {
                             
                             break;
                         case 3: //Inscripción Asignatura OBLIGATORIA
-                            
+                            listaEstudiantes->removeObj(usuarioEstudiante);
+                            usuarioEstudiante->inscripcionAsignatura(controladorA->ListarAsignaturas());
+                            listaEstudiantes->add(usuarioEstudiante,new KeyString(usuarioEstudiante->getCedula()));
                             break;
                         case 4: //Volver
                             break;
@@ -222,5 +258,9 @@ int main(int argc, char** argv) {
                 break;
         }
     }while(opcionMenu!=4);
+    
+    
+    
+    
     return 0;
 }

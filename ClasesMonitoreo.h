@@ -1,20 +1,14 @@
 #ifndef CLASESMONITOREO_H
 #define CLASESMONITOREO_H
-
-using namespace std;
 #include "Clases.h"
-#include "ColeccionesG/ICollection.h"
-#include "ColeccionesG/IDictionary.h"
-#include "DtTimeStamp.h"
-#include "Asignaturas.h"
-#include "Docentes.h"
-#include "string"
 
-class ClasesMonitoreo : public Clases {
+class ClasesMonitoreo:public Clases {
 private:
-    ICollection *listaHabilitados;
+    //ICollection *estudiantes;
+    
 public:
-    ClasesMonitoreo(string, int, Asignaturas*, Docentes*, IDictionary*, IDictionary*, DtTimeStamp*, DtTimeStamp*, string, ICollection*);
+    ClasesMonitoreo(string,int,Asignaturas&,Docentes&,DtTimeStamp,DtTimeStamp,string);
+
 };
 
 #endif /* CLASESMONITOREO_H */

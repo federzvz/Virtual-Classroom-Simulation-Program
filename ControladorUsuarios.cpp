@@ -1,4 +1,5 @@
 #include "ControladorUsuarios.h"
+#include "ColeccionesG/Lista.h"
 
 ControladorUsuarios::ControladorUsuarios (ICollection *usuarios){
     
@@ -43,10 +44,9 @@ void ControladorUsuarios::cancelar(){
 void ControladorUsuarios::eliminarAsignatura(){
     
 };
-
-ICollection *ControladorUsuarios::listarusuario(){
-    IIterator *iter = this->usuarios->iterator();
-    ICollection *lista = new Lista();
+ICollection* ControladorUsuarios::Listarusuario(){
+    IIterator* iter = this->usuarios->iterator();
+    ICollection* lista = new Lista();
     while(iter->hasNext()){
         Usuarios* algo = (Usuarios*) iter->getCurrent();
         lista->add(algo);
@@ -54,7 +54,8 @@ ICollection *ControladorUsuarios::listarusuario(){
     }
     delete iter;
     return lista;
-};
+}
+
 void ControladorUsuarios::MostrarUsuarios(IDictionary *listaUsuarios){
 IIterator* iter = listaUsuarios->getIteratorObj();
 while(iter->hasNext()){
@@ -66,4 +67,4 @@ while(iter->hasNext()){
     cout<<"ID: "<<algo->getID()<<endl;
     iter->next();
 }
-}
+};
