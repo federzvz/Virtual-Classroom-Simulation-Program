@@ -31,18 +31,7 @@ IDictionary *listaClasesPracticas= new ListDicc();
 IDictionary *listaClasesMonitoreo= new ListDicc();
 IDictionary *listaReproducciones= new ListDicc();
 
-void MostrarUsuario(){
-IIterator* iter = listaUsuarios->getIteratorObj();
-while(iter->hasNext()){
-    Usuarios* algo = (Usuarios*) iter->getCurrent();
-    cout<<"Nombre: "<<algo->getNombre()<<endl;
-    cout<<"Email: "<<algo->geteMail()<<endl;
-    cout<<"Url Imagen: "<<algo->getImagen()<<endl;
-    cout<<"Contrasenia: "<<algo->getPasswd()<<endl;
-    cout<<"ID: "<<algo->getID()<<endl;
-    iter->next();
-}
-}
+ICollection *usuarios= new Lista();
 
 int CantAdministradores=0;
 
@@ -97,7 +86,7 @@ int main(int argc, char** argv) {
                                 cout<<"Desea seguir ingresando valores? s/n ";
                                 cin>>seguir;
                             }while(seguir=='s');
-                            MostrarUsuario();
+                            controladorU->MostrarUsuarios(listaUsuarios);
                         
                             break;
                         case 2: //Alta de Asignatura OBLIGATORIA
