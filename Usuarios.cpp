@@ -65,3 +65,6 @@ ICollection *Usuarios::getListaAsig(){
 ICollection *Usuarios::getListaClases(){
     return this->listaClases;
 };
+void Usuarios::addListaClases(ICollectible* aux){
+    this->listaAsignatura->add(aux);
+}
