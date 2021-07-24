@@ -1,4 +1,5 @@
 #include "ControladorAsignaturas.h"
+#include "ColeccionesG/ListaDicc.h"
 #include <iostream>
 
 ControladorAsignaturas::ControladorAsignaturas(IDictionary *asignaturas) {
@@ -18,7 +19,35 @@ bool ControladorAsignaturas::confirmar(){
     }
     return decision;
 };
+//
+//void ControladorAsignaturas::ListarAsignaturas(ICollection* ListaAsignaturas){
+//    IIterator* iterador = ListaAsignaturas->iterator();
+//    while(iterador->hasNext()){
+//        Asignaturas* AsignaturaAux = (Asignaturas*)(iterador->getCurrent());
+//        cout<<AsignaturaAux->getNombre()<<endl;
+//        iterador->next();
+//    }
+//};
 
-void ControladorAsignaturas::ListarAsignaturas(){
-    
-};
+void ControladorAsignaturas::MostrarAsignaturas(IDictionary* asignaturas_){
+    IIterator* iterador = asignaturas_->getIteratorObj();
+    IDictionary* lista = new ListDicc();
+    while(iterador->hasNext()){
+        Asignaturas* AsignaturaAux = (Asignaturas*) iterador->getCurrent();
+        cout<<AsignaturaAux->getNombre()<<endl;
+        iterador->next();
+    }
+    delete iterador;
+}
+
+IDictionary* ControladorAsignaturas::ListarAsignaturas(){
+    IIterator* iterador = this->asignaturas->getIteratorObj();
+    IDictionary* lista = new ListDicc();
+    while(iterador->hasNext()){
+        Asignaturas* AsignaturaAux = (Asignaturas*) iterador->getCurrent();
+        lista->add(AsignaturaAux, new KeyString(AsignaturaAux->getCodigo()));
+        iterador->next();
+    }
+    delete iterador;
+    return lista;
+}
