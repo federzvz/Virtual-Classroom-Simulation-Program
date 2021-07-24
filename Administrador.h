@@ -12,9 +12,9 @@ private:
     
 public:
     Administrador (int, string, string, string, string, ICollection*, ICollection*, string);
-    void altaUsuario();
+    void altaUsuario(string,string,string,string,IDictionary*,IDictionary*,IDictionary*,IDictionary*,ICollection*,ICollection*,int,string,string);
     void altaAsignatura(string, string, bool, bool, bool, IDictionary &);
-    void asigDocenteAsignatura();
+    void asigDocenteAsignatura(int,string,IDictionary*,IDictionary*);
     void eliminarAsignatura();
     double tiempoDictadoClase();
     void inicioDeClase();
