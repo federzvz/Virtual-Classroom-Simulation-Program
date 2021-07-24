@@ -40,6 +40,7 @@ int main(int argc, char** argv) {
     char tipoClases;
     string username, password, nomAsig, codAsig;
     bool teoricas, practicas, monitoreo;
+    ControladorUsuarios *controladorU= new ControladorUsuarios(usuarios);
     ControladorAsignaturas *controladorA= new ControladorAsignaturas(listaAsignaturas);
     Estudiantes *usuarioEst=NULL;
     Docentes *usuarioDoc=NULL;
