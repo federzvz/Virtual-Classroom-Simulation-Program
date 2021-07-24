@@ -46,7 +46,7 @@ Usuarios* algo = (Usuarios*) iter->getCurrent();
 int CantAdministradores=0;
 
 int main(int argc, char** argv) {
-    int opcionMenu,opcionSubMenu;
+    int opcionMenu,opcionSubMenu,i=0;
     char tipoClases;
     string username, password, nomAsig, codAsig;
     bool teoricas, practicas, monitoreo;
@@ -91,7 +91,7 @@ int main(int argc, char** argv) {
                                     cout<<"Ingrese la cedula del estudiante: ";
                                     cin>>cedula;
                                 }
-                                //Root->altaUsuario(username,mail,url,password,listaUsuarios,listaAdministradores,listaDocentes,listaEstudiantes,asignaturas,clases,usu_opc,cedula,nom_inst);
+                                usuarioAdmin->altaUsuario(username,mail,url,password,listaUsuarios,listaAdministradores,listaDocentes,listaEstudiantes,asignaturas,clases,usu_opc,cedula,nom_inst);
                                 
                                 cout<<"Desea seguir ingresando valores? s/n ";
                                 cin>>seguir;
@@ -158,7 +158,12 @@ int main(int argc, char** argv) {
                             }
                             break;
                         case 3: //Asignacion de Docente Asignatura OBLIGATORIA
-                            
+                            cout<<"Asignacion de Docente:"<<endl;
+                            cout<<"ID del docente: ";
+                            cin>>i;
+                            cout<<"Codigo de la asignatura: ";
+                            cin>>codAsig;
+                            usuarioAdmin->asigDocenteAsignatura(i,codAsig,listaDocentes,listaAsignaturas);
                             break;
                         case 4: //Eliminar Asignatura OPCIONAL
                             
