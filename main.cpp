@@ -31,16 +31,17 @@ IDictionary *listaClasesPracticas= new ListDicc();
 IDictionary *listaClasesMonitoreo= new ListDicc();
 IDictionary *listaReproducciones= new ListDicc();
 
-void showshit(){
+void MostrarUsuario(){
 IIterator* iter = listaUsuarios->getIteratorObj();
-Usuarios* algo = (Usuarios*) iter->getCurrent();
-    while(iter->hasNext()){
-        cout<<algo->getNombre()<<endl;
-        cout<<algo->geteMail()<<endl;
-        cout<<algo->getImagen()<<endl;
-        cout<<algo->getPasswd()<<endl;
-        iter->next();
-    }
+while(iter->hasNext()){
+    Usuarios* algo = (Usuarios*) iter->getCurrent();
+    cout<<"Nombre: "<<algo->getNombre()<<endl;
+    cout<<"Email: "<<algo->geteMail()<<endl;
+    cout<<"Url Imagen: "<<algo->getImagen()<<endl;
+    cout<<"Contrasenia: "<<algo->getPasswd()<<endl;
+    cout<<"ID: "<<algo->getID()<<endl;
+    iter->next();
+}
 }
 
 int CantAdministradores=0;
