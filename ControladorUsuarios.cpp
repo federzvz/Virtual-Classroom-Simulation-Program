@@ -55,4 +55,15 @@ ICollection *ControladorUsuarios::listarusuario(){
     delete iter;
     return lista;
 };
-
+void ControladorUsuarios::MostrarUsuarios(IDictionary *listaUsuarios){
+IIterator* iter = listaUsuarios->getIteratorObj();
+while(iter->hasNext()){
+    Usuarios* algo = (Usuarios*) iter->getCurrent();
+    cout<<"Nombre: "<<algo->getNombre()<<endl;
+    cout<<"Email: "<<algo->geteMail()<<endl;
+    cout<<"Url Imagen: "<<algo->getImagen()<<endl;
+    cout<<"Contrasenia: "<<algo->getPasswd()<<endl;
+    cout<<"ID: "<<algo->getID()<<endl;
+    iter->next();
+}
+}
