@@ -25,6 +25,7 @@ public:
     void setListaAsig(ICollection*);
     void setListaClases(ICollection*);
     int getId();
+    void addListaClases(ICollectible*);
     string getNombre();
     string geteMail();
     string getImagen();
