@@ -1,11 +1,13 @@
 #include "Asignaturas.h"
 
-Asignaturas::Asignaturas(string nombre, string codigo, bool teorica, bool practica, bool monitoreo) {
+Asignaturas::Asignaturas(string nombre, string codigo, bool teorica, bool practica, bool monitoreo, IDictionary *inscriptos, IDictionary *docentes) {
     this->nombre=nombre;
     this->codigo=codigo;
     this->clasesTeoricas=teorica;
     this->clasesPracticas=practica;
     this->clasesDeMonitoreo=monitoreo;
+    this->inscriptos=inscriptos;
+    this->docentes=docentes;
 };
 
 string Asignaturas::getNombre(){
@@ -28,6 +30,14 @@ bool Asignaturas::getMonitoreo(){
     return this->clasesDeMonitoreo;
 };
 
+IDictionary *Asignaturas::getInscriptos(){
+    return this->inscriptos;
+};
+
+IDictionary *Asignaturas::getDocentes(){
+    return this->docentes;
+};
+
 void Asignaturas::setNombre(string nombre){
     this->nombre=nombre;
 };
@@ -46,4 +56,13 @@ void Asignaturas::setPracticas(bool practicas){
 
 void Asignaturas::setMonitoreo(bool monitoreo){
     this->clasesDeMonitoreo=monitoreo;
+};
+
+void Asignaturas::setInscriptos(IDictionary *estudiantes){
+     this->inscriptos=estudiantes;
+};
+
+void Asignaturas::setDocentes(IDictionary *docentes){
+     this->docentes=docentes;
+     
 };

@@ -4,35 +4,36 @@
 using namespace std;
 #include "ColeccionesG/ICollection.h"
 #include "ColeccionesG/IDictionary.h"
-#include "ColeccionesG/Lista.h"
+#include "ColeccionesG/ListaDicc.h"
+#include "Asignaturas.h"
 #include "string"
 
 class Usuarios: public ICollectible {
 private:
-    int ID;
+    int Id;
     string Nombre;
     string eMail;
     string URL_Imagen;
     string contraseña;
-    ICollection *listaAsignatura ;
-    ICollection *listaClases ;
+    IDictionary *listaAsignatura;
+    IDictionary *listaClases;
 public:
-    Usuarios (int,string, string, string, string, ICollection*, ICollection*);
-    void setID(int);
+    Usuarios (int, string, string, string, string, IDictionary*, IDictionary*);
+    void setId(int);
     void setNombre(string);
     void seteMail(string);
     void setImagen(string);
     void setContra(string);
-    void setListaAsig(ICollection*);
-    void setListaClases(ICollection*);
-    int getID();
-    void addListaClases(ICollectible*);
+    void setListaAsig(IDictionary*);
+    void setListaClases(IDictionary*);
+    int getId();
     string getNombre();
     string geteMail();
     string getImagen();
     string getPasswd();
-    ICollection *getListaAsig();
-    ICollection *getListaClases();
+    IDictionary *getListaAsig();
+    IDictionary *getListaClases();
 };
 
 #endif /* USUARIOS_H */
+
