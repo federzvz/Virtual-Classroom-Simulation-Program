@@ -1,6 +1,5 @@
 #include "ClasesMonitoreo.h"
 
-ClasesMonitoreo::ClasesMonitoreo(string nombre_x,int num,Asignaturas& asig_x,Docentes& doc_x,DtTimeStamp start,DtTimeStamp finish,string Url) : Clases(nombre_x,num,asig_x,doc_x,start,finish,Url) {
+ClasesMonitoreo::ClasesMonitoreo(string nombre, int numero, Asignaturas *asignatura, Docentes *docente, string modalidad, IDictionary *estudiantes, IDictionary *mensajes, DtTimeStamp *horaComienzo, DtTimeStamp *horaFinal, string linkVideo, IDictionary *habilitados) : Clases(nombre, numero, asignatura, docente, modalidad, estudiantes, mensajes, horaComienzo, horaFinal, linkVideo){
+    this->listaHabilitados=habilitados;
 };
-
-

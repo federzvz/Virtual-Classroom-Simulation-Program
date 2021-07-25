@@ -1,9 +1,9 @@
 #include "Usuarios.h"
+#include "Clases.h"
+#include "ColeccionesG/KeyString.h"
 
-
-
-Usuarios::Usuarios(int cod,string nom, string email, string url, string passwd, ICollection *asignaturas, ICollection *clases){
-    this->ID=cod;
+Usuarios::Usuarios(int id, string nom, string email, string url, string passwd, IDictionary *asignaturas, IDictionary *clases){
+    this->Id=id;
     this->Nombre=nom;
     this->eMail=email;
     this->URL_Imagen=url;
@@ -11,13 +11,10 @@ Usuarios::Usuarios(int cod,string nom, string email, string url, string passwd, 
     this->listaAsignatura=asignaturas;
     this->listaClases=clases;
 };
-void Usuarios::setID(int x){
-    this->ID=x;
-}
 
-int Usuarios::getID(){
-    return this->ID;
-}
+void Usuarios::setId(int id){
+    this->Id=id;
+};
 
 void Usuarios::setNombre(string nom){
     this->Nombre=nom;
@@ -35,12 +32,16 @@ void Usuarios::setContra(string passwd){
      this->contraseña=passwd;
 };
 
-void Usuarios::setListaClases (ICollection *clases){
+void Usuarios::setListaClases (IDictionary *clases){
     this->listaClases=clases;
 };
 
-void Usuarios::setListaAsig (ICollection *asignaturas){
+void Usuarios::setListaAsig (IDictionary *asignaturas){
     this->listaAsignatura=asignaturas;
+};
+
+int Usuarios::getId(){
+    return this->Id;
 };
 
 string Usuarios::getNombre(){
@@ -59,14 +60,31 @@ string Usuarios::getPasswd(){
     return this->contraseña;
 };
 
-ICollection *Usuarios::getListaAsig(){
+IDictionary *Usuarios::getListaAsig(){
     return this->listaAsignatura;
+    IIterator *iter = this->listaAsignatura->getIteratorKey();
+    IDictionary *lista = new ListDicc();
+    IKey *key=NULL;
+    while(iter->hasNext()){
+        Asignaturas* asignaturas=(Asignaturas*) iter->getCurrent();
+        key= new KeyString(asignaturas->getCodigo());
+        lista->add(asignaturas, key);
+        iter->next();
+    }
+    delete iter;
+    return lista;
 };
 
-ICollection *Usuarios::getListaClases(){
-    return this->listaClases;
+IDictionary *Usuarios::getListaClases(){
+    IIterator *iter = this->listaClases->getIteratorKey();
+    IDictionary *lista = new ListDicc();
+    IKey *key=NULL;
+    while(iter->hasNext()){
+        Clases* clases=(Clases*) iter->getCurrent();
+        key= new KeyInt(clases->getNumero());
+        lista->add(clases, key);
+        iter->next();
+    }
+    delete iter;
+    return lista;
 };
-
-void Usuarios::addListaClases(ICollectible* aux){
-    this->listaAsignatura->add(aux);
-}
